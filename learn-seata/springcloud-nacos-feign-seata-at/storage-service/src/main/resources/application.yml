@@ -13,9 +13,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/seata_at_storage?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      url: jdbc:mysql://myhost:3306/seata_at_storage?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
       username: root
-      password: root
+      password: 1qaz!QAZ2wsx@WSX
       initial-size: 10
       max-active: 100
       min-idle: 10
@@ -49,7 +49,7 @@ seata:
     nacos:
       application: seata-server
       server-addr: 127.0.0.1:8848
-      namespace:
+      namespace: seata1_5_1_id
       group: SEATA_GROUP
 
   config:
@@ -57,7 +57,7 @@ seata:
     type: nacos
     nacos:
       server-addr: 127.0.0.1:8848
-      namespace: 7e838c12-8554-4231-82d5-6d93573ddf32
+      namespace: seata1_5_1_id
       group: SEATA_GROUP
       data-id: seataServer.properties
 

@@ -6,6 +6,12 @@ CREATE TABLE `account_tbl` (
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+INSERT INTO seata_at_account.account_tbl (user_id,money) VALUES
+                                                             ('1001',100),
+                                                             ('1002',200),
+                                                             ('1003',300);
+
+
 CREATE TABLE `storage_tbl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commodity_code` varchar(255) DEFAULT NULL,
@@ -13,6 +19,11 @@ CREATE TABLE `storage_tbl` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `commodity_code` (`commodity_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO seata_at_storage.storage_tbl (commodity_code,count) VALUES
+                                                                    ('pen',10),
+                                                                    ('ink',30);
+
 
 CREATE TABLE `order_tbl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
