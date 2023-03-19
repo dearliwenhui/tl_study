@@ -1,8 +1,8 @@
 CREATE DATABASE `seata_tcc_storage` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE seata_tcc_storage;
 
-DROP TABLE IF EXISTS `stock_tbl`;
-CREATE TABLE `stock_tbl`
+DROP TABLE IF EXISTS `storage_tbl`;
+CREATE TABLE `storage_tbl`
 (
     `id`             int(11) NOT NULL AUTO_INCREMENT,
     `commodity_code` varchar(255) DEFAULT NULL,
@@ -11,6 +11,11 @@ CREATE TABLE `stock_tbl`
     PRIMARY KEY (`id`),
     UNIQUE KEY (`commodity_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO seata_tcc_storage.storage_tbl (commodity_code,count,freeze_count) VALUES
+                                                                                  ('pen',99,0),
+                                                                                  ('ink',100,0);
+
 
 CREATE TABLE IF NOT EXISTS `tcc_fence_log`
 (
@@ -32,7 +37,7 @@ USE seata_tcc_order;
 DROP TABLE IF EXISTS `order_tbl`;
 CREATE TABLE `order_tbl`
 (
-    `id`             int(11) NOT NULL AUTO_INCREMENT,
+    `id`             BIGINT NOT NULL AUTO_INCREMENT,
     `user_id`        varchar(255) DEFAULT NULL,
     `commodity_code` varchar(255) DEFAULT NULL,
     `count`          int(11) DEFAULT 0,
@@ -67,6 +72,8 @@ CREATE TABLE `account_tbl`
     `freeze_money`  int(11) DEFAULT 0,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO seata_tcc_account.account_tbl (user_id,money,freeze_money) VALUES
+    ('1000',100,0);
 
 
 CREATE TABLE IF NOT EXISTS `tcc_fence_log`
