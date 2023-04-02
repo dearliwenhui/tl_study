@@ -13,8 +13,9 @@ public class MsgProducer {
     private final static String TOPIC_NAME = "my-replicated-topic";
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
+        //https://kafka.apache.org/24/documentation.html#producerconfigs
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.65.60:9092,192.168.65.60:9093,192.168.65.60:9094");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "myhost:9092");
          /*
          发出消息持久化机制参数
         （1）acks=0： 表示producer不需要等待任何broker确认收到消息的回复，就可以继续发送下一条消息。性能最高，但是最容易丢消息。
