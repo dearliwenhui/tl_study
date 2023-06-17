@@ -68,7 +68,7 @@ public class CacheStampedLock {
                 // 不为 0 升级写锁成功
                 if (wl != 0L) {
                     stamp = wl;
-                    // 模拟从数据库读取数据, 写入缓存中
+                    //TODO 模拟从数据库读取数据, 写入缓存中
                     currentValue = "query db";
                     idMap.put(key, currentValue);
                     break;

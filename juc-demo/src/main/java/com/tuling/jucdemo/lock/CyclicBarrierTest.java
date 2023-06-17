@@ -14,12 +14,11 @@ public class CyclicBarrierTest {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
 
         for (int i = 0; i < 5; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+            new Thread(()->{
                     try {
                         System.out.println(Thread.currentThread().getName()
                                 + "开始等待其他线程");
+                        // 阻塞直到指定的线程都调用此方法，继续执行
                         cyclicBarrier.await();
                         System.out.println(Thread.currentThread().getName() + "开始执行");
                         //TODO 模拟业务处理
@@ -29,7 +28,6 @@ public class CyclicBarrierTest {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
             }).start();
 
         }

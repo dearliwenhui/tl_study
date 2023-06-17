@@ -11,12 +11,8 @@ public class CASTest {
     public static void main(String[] args) {
         Entity entity = new Entity();
 
-        //1.获取unsafe对象
         Unsafe unsafe = UnsafeFactory.getUnsafe();
 
-        //2.获取 entity 对象属性字段x 的内存偏移量
-        //偏移量=对象头长度+前面属性字段长度
-        //对象地址加上偏移量可以快速定位到 需要cas属性字段的内存地址
         long offset = UnsafeFactory.getFieldOffset(unsafe, Entity.class, "x");
         System.out.println(offset);
         boolean successful;

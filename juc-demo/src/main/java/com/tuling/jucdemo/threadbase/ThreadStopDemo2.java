@@ -20,6 +20,7 @@ public class ThreadStopDemo2 implements Runnable {
             }
         }
         System.out.println("线程停止： stop thread");
+
     }
 
     public static void main(String[] args) throws InterruptedException {

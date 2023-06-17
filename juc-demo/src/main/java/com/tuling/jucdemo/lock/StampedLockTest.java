@@ -50,22 +50,20 @@ class Point {
      * @return
      */
     public double distanceFromOrigin() {
-        // 获得一个乐观读锁
+        // 获得一个乐观读锁   (无锁)
         long stamp = stampedLock.tryOptimisticRead();
         // 注意下面两行代码不是原子操作
         // 假设x,y = (100,200)
         // 此处已读取到x=100，但x,y可能被写线程修改为(300,400)
         double currentX = x;
-        log.debug("第1次读，x:{},y:{},currentX:{}",
-                x,y,currentX);
+        log.debug("第1次读，x:{},y:{},currentX:{}",x,y,currentX);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        // 此处已读取到y，如果没有写入，读取是正确的(100,200)
-        // 如果有写入，读取是错误的(100,400)
+//         此处已读取到y，如果没有写入，读取是正确的(100,200)
+//         如果有写入，读取是错误的(100,400)
         double currentY = y;
         log.debug("第2次读，x:{},y:{},currentX:{},currentY:{}",
                 x,y,currentX,currentY);

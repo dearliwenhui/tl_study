@@ -1,5 +1,7 @@
 package com.tuling.jucdemo.sync;
 
+import java.util.ArrayList;
+
 import org.openjdk.jol.info.ClassLayout;
 
 /**
@@ -25,16 +27,16 @@ public class ObjectTest {
             System.out.println(Thread.currentThread().getName()+"释放锁\n"+ClassLayout.parseInstance(obj).toPrintable());
 
             // jvm 优化
-            try {
-                Thread.sleep(100000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(100000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 
         },"Thread1").start();
 
 
-        Thread.sleep(2000);
+        Thread.sleep(20);
 
 
         new Thread(()->{

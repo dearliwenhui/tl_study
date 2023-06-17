@@ -26,6 +26,15 @@ public class ReentrantLockDemo6 {
             while(!hashcig){
                 try {
                     log.debug("没有烟，歇一会");
+                    // 前半段： 释放锁，进入条件队列，然后阻塞线程
+
+                    //过渡阶段： 被其他调用singal/singalAll的线程唤醒 （前提：要在同步队列中）
+                    // 调用singal/singalAll的线程:  条件队列转同步队列，
+                    // 可以在释放锁的时候唤醒head的后续节点所在的线程
+
+                    // 后半段： 获取锁（ 如果有竞争，cas获取锁失败，还会阻塞），
+                    // 释放锁（唤醒同步队列中head的后续节点所在的线程）
+                    // 后半段的逻辑其实就是独占锁的逻辑
                     cigCon.await();
 
                 }catch (Exception e){

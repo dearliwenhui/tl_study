@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ReentrantLockDemo5 {
 
     public static void main(String[] args) throws InterruptedException {
-//        ReentrantLock lock = new ReentrantLock(true); //公平锁
+        //ReentrantLock lock = new ReentrantLock(true); //公平锁
         ReentrantLock lock = new ReentrantLock(); //非公平锁
 
         for (int i = 0; i < 500; i++) {

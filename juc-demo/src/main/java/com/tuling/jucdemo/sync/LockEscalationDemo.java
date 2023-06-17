@@ -22,7 +22,7 @@ public class LockEscalationDemo{
         Thread.sleep(5000);
         Object obj = new Object();
         // 思考： 如果对象调用了hashCode,还会开启偏向锁模式吗
-        //obj.hashCode();
+        obj.hashCode();
         log.debug(ClassLayout.parseInstance(obj).toPrintable());
 
         new Thread(new Runnable() {
@@ -42,6 +42,8 @@ public class LockEscalationDemo{
 
                     log.debug(Thread.currentThread().getName()+"获取锁执行中。。。\n"
                             +ClassLayout.parseInstance(obj).toPrintable());
+
+                    new StringBuffer().append("fox").append("monkey");
                 }
                 log.debug(Thread.currentThread().getName()+"释放锁。。。\n"
                         +ClassLayout.parseInstance(obj).toPrintable());
@@ -65,8 +67,8 @@ public class LockEscalationDemo{
                         +ClassLayout.parseInstance(obj).toPrintable());
             }
         },"thread2").start();
-
-
+//
+//
         new Thread(new Runnable() {
             @Override
             public void run() {

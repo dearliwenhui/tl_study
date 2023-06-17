@@ -66,7 +66,7 @@ public class BiasedLockingTest {
         }, "thead2").start();
 
 
-        Thread.sleep(3000);
+        Thread.sleep(6000);
 
         new Thread(() -> {
             for (int i = 0; i < 50; i++) {
@@ -85,11 +85,23 @@ public class BiasedLockingTest {
         },"thread3").start();
 
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         log.debug("查看新创建的对象");
         log.debug((ClassLayout.parseInstance(new Object()).toPrintable()));
 
         LockSupport.park();
+
+        //线程逃逸
+
+        for(int i=0;i<10;i++){
+            new Thread(()->{
+                Object lock = new Object();
+                synchronized (lock){
+                    //Todo
+                }
+            }).start();
+        }
+
 
     }
 }

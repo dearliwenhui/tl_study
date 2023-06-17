@@ -8,7 +8,6 @@ import com.tuling.jucdemo.lock.CASLock;
  * @author Fox
  */
 public class Test {
-
     private volatile static int sum = 0;
     static Object object = "";
     static ReentrantLock lock = new ReentrantLock();
@@ -54,5 +53,6 @@ public class Test {
         System.out.println(sum);
 
     }
+
 
 }

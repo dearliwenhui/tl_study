@@ -15,7 +15,7 @@ import com.tuling.jucdemo.factory.UnsafeFactory;
 public  class VisibilityTest {
     //  storeLoad  JVM内存屏障  ---->  (汇编层面指令)  lock; addl $0,0(%%rsp)
     // lock前缀指令不是内存屏障的指令，但是有内存屏障的效果   缓存失效
-    private volatile boolean flag = true;
+    private boolean flag = true;
     private int count = 0;
 
     public void refresh() {
@@ -49,7 +49,6 @@ public  class VisibilityTest {
 //                end = System.nanoTime();
 //            }
 
-
 //            try {
 //                Thread.sleep(1);   //内存屏障
 //            } catch (InterruptedException e) {
@@ -64,16 +63,24 @@ public  class VisibilityTest {
             // volatile  锁机制
             //当前线程对共享变量的操作会存在读不到，或者不能立即读到另一个线程对此变量的写操作
 
-
             // lock 硬件层面扩展      JMM为什么选择共享内存模型
-
 
         }
         System.out.println(Thread.currentThread().getName() + "跳出循环: count=" + count);
     }
 
+
     public static void main(String[] args) throws InterruptedException {
         VisibilityTest test = new VisibilityTest();
+
+        for(int i = 0; i <100; i++){
+            new Thread(()->{
+                while (true){
+                    //System.out.println(Thread.currentThread().getName());
+                }
+            }).start();
+        }
+        Thread.sleep(100);
 
         // 线程threadA模拟数据加载场景
         Thread threadA = new Thread(() -> test.load(), "threadA");

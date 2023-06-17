@@ -18,12 +18,11 @@ public class ThreadInterruptTest {
                 while (true) {
                     i++;
                     System.out.println(i);
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
+//                    try {
+//                        Thread.sleep(10000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
                     //Thread.interrupted()  清除中断标志位
                     //Thread.currentThread().isInterrupted() 不会清除中断标志位
                     if (Thread.interrupted()  ) {
