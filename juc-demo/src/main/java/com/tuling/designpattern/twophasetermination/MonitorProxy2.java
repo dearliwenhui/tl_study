@@ -28,6 +28,7 @@ public class MonitorProxy2 {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     //重新设置线程中断状态
+                    //模拟第三方程序被唤醒后没有设置中断标志位，如果自己开发，再次设置中断标志位好一点
                     //Thread.currentThread().interrupt();
                 }
             }
