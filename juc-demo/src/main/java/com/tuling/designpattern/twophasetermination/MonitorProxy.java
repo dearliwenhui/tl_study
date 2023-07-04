@@ -23,7 +23,7 @@ public class MonitorProxy {
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
-                    //重新设置线程中断状态
+                    //重新设置线程中断状态，其它线程可以使用 interrupt 方法打断正在睡眠的线程，这时 sleep 方法会抛出 InterruptedException，并且会清除中断标志
                    // Thread.currentThread().interrupt();
                 }
             }
